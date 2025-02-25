@@ -1,0 +1,30 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: servico-produto
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  datasource:
+    url: jdbc:mysql://localhost:3307/produto_db
+    username: produto_user
+    password: produto_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+#    hibernate:
+#      ddl-auto: update     # Controle de esquema, use "update" durante o desenvolvimento
+    show-sql: true
+
+
+  flyway:
+    enabled: true  # Habilita o Flyway
+    locations: classpath:db/migration
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

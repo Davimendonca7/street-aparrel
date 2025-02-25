@@ -1,0 +1,14 @@
+# Usa a imagem do OpenJDK 17
+FROM openjdk:17-jdk-slim
+
+# Define o diretório de trabalho dentro do contêiner
+WORKDIR /app
+
+# Copia o JAR gerado pelo build da aplicação
+COPY target/eureka-server-0.1.jar eureka-server.jar
+
+# Expõe a porta do Eureka Server
+EXPOSE 8761
+
+# Comando para rodar o Eureka Server
+ENTRYPOINT ["java", "-jar", "eureka-server.jar"]

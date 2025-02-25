@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+
+  eureka-server:
+    build: ./eureka-server
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - microservices-network
+
+  gateway:
+    build: ./gateway
+    container_name: gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - microservices-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - microservices-network
+
+  db_produto:
+    image: mysql:8
+    container_name: db_produto
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: produto_db
+      MYSQL_USER: produto_user
+      MYSQL_PASSWORD: produto_password
+    ports:
+      - "3307:3306"  # Mapeamento da porta do MySQL para a porta 3307 no host
+    networks:
+      - microservices-network  # Rede personalizada para comunicação
+
+  db_usuario:
+    image: mysql:8
+    container_name: db_usuario
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: usuario_db
+      MYSQL_USER: usuario_user
+      MYSQL_PASSWORD: usuario_password
+    ports:
+      - "3308:3306"  # Porta exclusiva para o banco do serviço de usuário
+    networks:
+      - microservices-network  # Mesma rede personalizada
+
+networks:
+  microservices-network:
+    driver: bridge  # Rede customizada para comunicação entre contêineres

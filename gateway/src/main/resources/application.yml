@@ -1,0 +1,26 @@
+server:
+  port: 8080 # Porta na qual o gateway será executado
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: servico-produto
+          uri: lb://servico-produto
+          predicates:
+            - Path=/produtos/**
+#        - id: servico-cliente
+#          uri: lb://servico-cliente
+#          predicates:
+#            - Path=/clientes/**
+#        - id: servico-pedido
+#          uri: lb://servico-pedido
+#          predicates:
+#            - Path=/pedidos/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
