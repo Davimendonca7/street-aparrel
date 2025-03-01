@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: servico-usuario
+    name: user-service
 #  rabbitmq:
 #    host: localhost
 #    port: 5672
@@ -26,6 +26,7 @@ spring:
 eureka:
   client:
     service-url:
+#      defaultZone: http://eureka-server:8761/eureka
       defaultZone: http://localhost:8761/eureka
 
 api:

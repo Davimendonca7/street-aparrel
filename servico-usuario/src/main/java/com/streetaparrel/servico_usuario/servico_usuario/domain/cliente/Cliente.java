@@ -1,8 +1,6 @@
 package com.streetaparrel.servico_usuario.servico_usuario.domain.cliente;
 
 import com.streetaparrel.servico_usuario.servico_usuario.domain.cliente.dto.DadosCadastroCliente;
-import com.streetaparrel.servico_usuario.servico_usuario.domain.usuario.Usuario;
-import com.streetaparrel.servico_usuario.servico_usuario.domain.usuario.dto.DadosCadastroUsuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,10 +24,6 @@ public class Cliente {
     private String cpf;
     private String telefone;
     private String endereco;
-
-    @OneToOne
-    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
-    private Usuario usuario;
 
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
