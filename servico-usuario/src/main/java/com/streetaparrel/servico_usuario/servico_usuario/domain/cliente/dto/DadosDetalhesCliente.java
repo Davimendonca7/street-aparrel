@@ -7,10 +7,11 @@ import jakarta.validation.constraints.NotNull;
 public record DadosDetalhesCliente(
         String nome,
         String cpf,
-        String telefone,
-        String endereco
+        String telefone
+        //,
+    //    String endereco
 ) {
     public DadosDetalhesCliente (Cliente cliente){
-        this(cliente.getNome(), cliente.getCpf(), cliente.getTelefone(), cliente.getEndereco());
+        this(cliente.getNome(), cliente.getCpf(), cliente.getTelefone());
     }
 }
