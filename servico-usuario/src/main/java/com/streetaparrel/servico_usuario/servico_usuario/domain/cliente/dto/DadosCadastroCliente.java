@@ -1,5 +1,7 @@
 package com.streetaparrel.servico_usuario.servico_usuario.domain.cliente.dto;
 
+import com.streetaparrel.servico_usuario.servico_usuario.domain.endereco.dto.EnderecoReqDto;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -14,7 +16,7 @@ public record DadosCadastroCliente(
         String cpf,
         @NotBlank
         String telefone,
-        @NotBlank
-        String endereco
+        @Valid
+        EnderecoReqDto endereco
 ) {
 }
