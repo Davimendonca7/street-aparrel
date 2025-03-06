@@ -10,11 +10,16 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
         <module name="service" />
+        <module name="auth-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="service" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="auth-service" options="-parameters" />
       <module name="service" options="-parameters" />
     </option>
   </component>
