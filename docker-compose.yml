@@ -67,6 +67,19 @@ services:
     networks:
       - microservices-network  # Mesma rede personalizada
 
+  db_auth-service:
+    image: postgres:latest
+    container_name: db_auth-service
+    environment:
+      oPOSTGRES_USER: admin
+      POSTGRES_PASSWORD: authService_password
+      POSTGRES_DB: authService_credenciais
+    ports:
+      - 5432:5432
+    networks:
+      - microservices-network
+
+
 networks:
   microservices-network:
     driver: bridge  # Rede customizada para comunicação entre contêineres

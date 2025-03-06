@@ -1,6 +1,7 @@
 package com.streetaparrel.servico_usuario.servico_usuario.domain.cliente;
 
 import com.streetaparrel.servico_usuario.servico_usuario.domain.cliente.dto.DadosCadastroCliente;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.endereco.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +24,10 @@ public class Cliente {
     private String nome;
     private String cpf;
     private String telefone;
-    private String endereco;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
+    private Endereco endereco;
 
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
@@ -35,7 +39,6 @@ public class Cliente {
         this.nome = dadosCadastro.nome();
         this.cpf = dadosCadastro.cpf();
         this.telefone = dadosCadastro.telefone();
-        this.endereco = dadosCadastro.endereco();
     }
 
     @PrePersist
