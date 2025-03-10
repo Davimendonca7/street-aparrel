@@ -7,9 +7,9 @@ spring:
 
   datasource:
     url: jdbc:postgresql://localhost:5432/authService_credenciais
-    driver-class-name: org.postgresql.Driver
-    password: authService_password
     username: admin
+    password: authService_password
+    driver-class-name: org.postgresql.Driver
 
   flyway:
     enabled: true

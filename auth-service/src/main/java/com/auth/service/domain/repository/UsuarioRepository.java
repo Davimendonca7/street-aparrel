@@ -5,8 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+import java.util.Optional;
+import java.util.UUID;
 
-    UserDetails findByUsername(String username);
+@Repository
+public interface UsuarioRepository extends JpaRepository<Usuario, UUID> {
+
+    Optional<Usuario> findByUsername(String username);
 }
