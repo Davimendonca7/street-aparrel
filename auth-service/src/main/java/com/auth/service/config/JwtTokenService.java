@@ -3,11 +3,13 @@ package com.auth.service.config;
 import com.auth.service.domain.entity.Usuario;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
 @Service
+@RequiredArgsConstructor
 public class JwtTokenService {
 
     private final String secretKey = "teste123";
