@@ -1,4 +1,4 @@
-package com.streetaparrel.servico_usuario.servico_usuario.domain.endereco.dto;
+package com.auth.service.domain.DTOs;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

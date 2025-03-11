@@ -1,10 +1,7 @@
 package com.streetaparrel.servico_usuario.servico_usuario.domain.endereco;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Endereco {
 
     @Id
@@ -24,6 +22,7 @@ public class Endereco {
     private String cidade;
     private String estado;
     private String cep;
+    private String numero;
 
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;

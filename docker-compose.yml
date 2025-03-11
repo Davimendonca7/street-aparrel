@@ -41,9 +41,9 @@ services:
     networks:
       - microservices-network
 
-  db_produto:
+  db_product-service:
     image: mysql:8
-    container_name: db_produto
+    container_name: db_product-service
     environment:
       MYSQL_ROOT_PASSWORD: root_password
       MYSQL_DATABASE: produto_db
@@ -54,9 +54,9 @@ services:
     networks:
       - microservices-network  # Rede personalizada para comunicação
 
-  db_usuario:
+  db_user-service:
     image: mysql:8
-    container_name: db_usuario
+    container_name: db_user-service
     environment:
       MYSQL_ROOT_PASSWORD: root_password
       MYSQL_DATABASE: usuario_db
@@ -71,7 +71,7 @@ services:
     image: postgres:latest
     container_name: db_auth-service
     environment:
-      oPOSTGRES_USER: admin
+      POSTGRES_USER: admin
       POSTGRES_PASSWORD: authService_password
       POSTGRES_DB: authService_credenciais
     ports:

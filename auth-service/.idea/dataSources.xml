@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="authService_credenciais@localhost" uuid="ebe1c4da-4b25-4a11-8992-9b0c9028b56f">
+    <data-source source="LOCAL" name="postgres" uuid="1f27a2b0-8681-4014-8602-835bea186b5e">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
