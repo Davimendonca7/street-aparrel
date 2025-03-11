@@ -1,10 +1,10 @@
 package com.auth.service.domain.Service;
 
 import com.auth.service.domain.DTOs.UserReqDto;
+import com.auth.service.domain.Service.messaging.RabbitMQProducer;
+import com.auth.service.domain.entity.Cliente;
 import com.auth.service.domain.entity.Usuario;
-import com.auth.service.domain.enums.Role;
 import com.auth.service.domain.repository.UsuarioRepository;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
     private final UsuarioRepository usuarioRepository;
+    private final RabbitMQProducer rabbitMQProducer;
 
 
     public Usuario cadastrarUsuario(UserReqDto user) {
@@ -28,6 +29,13 @@ public class AuthService {
                 .build();
 
         usuarioRepository.save(usuario);
+
+        Cliente cliente = new Cliente(user);
+        cliente.setId(usuario.getId());
+
+//        enviar para user-service
+
+        rabbitMQProducer.sendMessage(cliente);
 
         return usuario;
     }
