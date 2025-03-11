@@ -1,8 +1,8 @@
-package com.auth.service.config;
+package com.auth.service.config.jwt;
 
 
+import com.auth.service.config.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
