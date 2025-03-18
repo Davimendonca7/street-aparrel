@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 public record UserReqDto(
         @NotBlank
-        Role role,
+        String role,
         @NotBlank
         String login,
         @NotBlank

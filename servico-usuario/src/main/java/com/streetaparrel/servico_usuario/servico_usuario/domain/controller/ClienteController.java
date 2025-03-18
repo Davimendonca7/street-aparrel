@@ -1,10 +1,10 @@
-package com.streetaparrel.servico_usuario.servico_usuario.application.street_aparrel;
+package com.streetaparrel.servico_usuario.servico_usuario.domain.controller;
 
-import com.streetaparrel.servico_usuario.servico_usuario.domain.cliente.Cliente;
-import com.streetaparrel.servico_usuario.servico_usuario.domain.cliente.ClienteService;
-import com.streetaparrel.servico_usuario.servico_usuario.domain.cliente.dto.DadosCadastroCliente;
-import com.streetaparrel.servico_usuario.servico_usuario.domain.cliente.dto.DadosDetalhesCliente;
-import com.streetaparrel.servico_usuario.servico_usuario.domain.endereco.dto.EnderecoResDto;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.entity.Cliente;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.service.ClienteService;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.dto.cliente.DadosCadastroCliente;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.dto.cliente.DadosDetalhesCliente;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.dto.endereco.EnderecoResDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

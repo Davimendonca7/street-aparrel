@@ -4,7 +4,12 @@ server:
 spring:
   application:
     name: auth-service
-
+  rabbitmq:
+    dynamic: true
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
   datasource:
     url: jdbc:postgresql://localhost:5432/authService_credenciais
     username: admin

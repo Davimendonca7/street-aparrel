@@ -19,12 +19,12 @@ public class Cliente {
     private String nome;
     private String cpf;
     private String telefone;
-    private EnderecoReqDto enderecoReqDto;
+    private EnderecoReqDto endereco;
 
     public Cliente(UserReqDto userReqDto){
         this.nome = userReqDto.nome();
         this.cpf = userReqDto.cpf();
         this.telefone = userReqDto.telefone();
-        this.enderecoReqDto = userReqDto.endereco();
+        this.endereco = userReqDto.endereco();
     }
 }

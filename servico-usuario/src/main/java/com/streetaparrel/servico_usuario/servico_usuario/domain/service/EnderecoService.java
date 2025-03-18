@@ -1,6 +1,9 @@
-package com.streetaparrel.servico_usuario.servico_usuario.domain.endereco;
+package com.streetaparrel.servico_usuario.servico_usuario.domain.service;
 
-import com.streetaparrel.servico_usuario.servico_usuario.domain.endereco.dto.EnderecoReqDto;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.dto.endereco.EnderecoReqDto;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.entity.Endereco;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.repository.EnderecoRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +13,7 @@ public class EnderecoService {
 
     private final EnderecoRepository enderecoRepository;
 
+    @Transactional
     public Endereco salvarEndereco(EnderecoReqDto enderecoReqDto){
 
         Endereco endereco = Endereco.builder()
@@ -19,8 +23,9 @@ public class EnderecoService {
                 .rua(enderecoReqDto.rua())
                 .build();
 
-        return enderecoRepository.save(endereco);
+        enderecoRepository.save(endereco);
 
+        return endereco;
 
     }
 }

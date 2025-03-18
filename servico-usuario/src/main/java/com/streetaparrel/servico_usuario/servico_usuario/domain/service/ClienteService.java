@@ -1,8 +1,9 @@
-package com.streetaparrel.servico_usuario.servico_usuario.domain.cliente;
+package com.streetaparrel.servico_usuario.servico_usuario.domain.service;
 
-import com.streetaparrel.servico_usuario.servico_usuario.domain.cliente.dto.DadosCadastroCliente;
-import com.streetaparrel.servico_usuario.servico_usuario.domain.endereco.Endereco;
-import com.streetaparrel.servico_usuario.servico_usuario.domain.endereco.EnderecoService;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.dto.cliente.DadosCadastroCliente;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.entity.Cliente;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.entity.Endereco;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

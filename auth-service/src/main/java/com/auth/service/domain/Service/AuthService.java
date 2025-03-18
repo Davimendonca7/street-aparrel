@@ -4,6 +4,7 @@ import com.auth.service.domain.DTOs.UserReqDto;
 import com.auth.service.domain.Service.messaging.RabbitMQProducer;
 import com.auth.service.domain.entity.Cliente;
 import com.auth.service.domain.entity.Usuario;
+import com.auth.service.domain.enums.Role;
 import com.auth.service.domain.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class AuthService {
         }
 
         Usuario usuario = Usuario.builder()
-                .role(user.role())
+                .role(Role.valueOf(user.role()))
                 .username(user.login())
                 .senha(user.senha())
                 .build();
@@ -32,8 +33,6 @@ public class AuthService {
 
         Cliente cliente = new Cliente(user);
         cliente.setId(usuario.getId());
-
-//        enviar para user-service
 
         rabbitMQProducer.sendMessage(cliente);
 

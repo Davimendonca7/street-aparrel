@@ -1,4 +1,4 @@
-package com.streetaparrel.servico_usuario.servico_usuario.domain.endereco;
+package com.streetaparrel.servico_usuario.servico_usuario.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

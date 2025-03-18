@@ -1,7 +1,7 @@
-package com.streetaparrel.servico_usuario.servico_usuario.domain.endereco.dto;
+package com.streetaparrel.servico_usuario.servico_usuario.domain.dto.endereco;
 
 
-import com.streetaparrel.servico_usuario.servico_usuario.domain.endereco.Endereco;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.entity.Endereco;
 
 public record EnderecoResDto (
         String rua,

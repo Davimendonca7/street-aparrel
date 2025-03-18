@@ -1,7 +1,6 @@
-package com.streetaparrel.servico_usuario.servico_usuario.domain.cliente;
+package com.streetaparrel.servico_usuario.servico_usuario.domain.entity;
 
-import com.streetaparrel.servico_usuario.servico_usuario.domain.cliente.dto.DadosCadastroCliente;
-import com.streetaparrel.servico_usuario.servico_usuario.domain.endereco.Endereco;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.dto.cliente.DadosCadastroCliente;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
