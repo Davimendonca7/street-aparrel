@@ -1,27 +1,27 @@
-server:
-  port: 0
+#server:
+#  port: 0
 
 spring:
   application:
     name: auth-service
-  rabbitmq:
-    dynamic: true
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-  datasource:
-    url: jdbc:postgresql://localhost:5432/authService_credenciais
-    username: admin
-    password: authService_password
-    driver-class-name: org.postgresql.Driver
+#  rabbitmq:
+#    dynamic: true
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/authService_credenciais
+#    username: admin
+#    password: authService_password
+#    driver-class-name: org.postgresql.Driver
 
-  flyway:
-    enabled: true
-    locations: classpath:db/migration
+#  flyway:
+#    enabled: true
+#    locations: classpath:db/migration
 
 eureka:
   client:
     service-url:
-      #      defaultZone: http://eureka-server:8761/eureka
-      defaultZone: http://localhost:8761/eureka
+            defaultZone: http://eureka-server:8761/eureka
+#      defaultZone: http://localhost:8761/eureka

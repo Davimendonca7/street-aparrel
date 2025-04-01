@@ -1,4 +1,4 @@
-package com.auth.service.domain.Controller;
+package com.auth.service.domain.controller;
 
 
 import com.auth.service.domain.DTOs.UserReqDto;
