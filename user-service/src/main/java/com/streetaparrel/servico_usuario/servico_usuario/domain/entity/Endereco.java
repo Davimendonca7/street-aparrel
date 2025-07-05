@@ -17,7 +17,6 @@ public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String rua;
     private String cidade;
     private String estado;
@@ -29,6 +28,10 @@ public class Endereco {
 
     @Column(name = "data_atualizacao")
     private LocalDateTime dataAtualizacao;
+
+    @OneToOne
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id", unique = true)
+    private Cliente cliente;
 
     @PrePersist
     public void prePersist(){

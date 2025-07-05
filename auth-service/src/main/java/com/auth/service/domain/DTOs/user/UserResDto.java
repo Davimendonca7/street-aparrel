@@ -1,8 +1,7 @@
-package com.auth.service.domain.DTOs;
+package com.auth.service.domain.DTOs.user;
 
 import com.auth.service.domain.entity.Usuario;
 import com.auth.service.domain.enums.Role;
-import lombok.*;
 
 public record UserResDto(
         String login,

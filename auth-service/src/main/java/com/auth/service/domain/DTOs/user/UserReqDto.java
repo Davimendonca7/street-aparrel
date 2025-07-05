@@ -1,15 +1,17 @@
-package com.streetaparrel.servico_usuario.servico_usuario.domain.dto.cliente;
+package com.auth.service.domain.DTOs.user;
 
-import com.streetaparrel.servico_usuario.servico_usuario.domain.dto.endereco.EnderecoReqDto;
+import com.auth.service.domain.DTOs.endereco.EnderecoReqDto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.UUID;
-
-public record DadosCadastroCliente(
+public record UserReqDto(
         @NotBlank
-        UUID id,
+        String role,
+        @NotBlank
+        String login,
+        @NotBlank
+        String senha,
         @NotBlank
         String nome,
         @NotNull

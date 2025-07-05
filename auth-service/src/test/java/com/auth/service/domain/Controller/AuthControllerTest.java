@@ -1,9 +1,9 @@
 package com.auth.service.domain.Controller;
 
-import com.auth.service.domain.controller.AuthController;
-import com.auth.service.domain.DTOs.EnderecoReqDto;
-import com.auth.service.domain.DTOs.UserReqDto;
-import com.auth.service.domain.DTOs.UserResDto;
+import com.auth.service.controller.AuthController;
+import com.auth.service.domain.DTOs.endereco.EnderecoReqDto;
+import com.auth.service.domain.DTOs.user.UserReqDto;
+import com.auth.service.domain.DTOs.user.UserResDto;
 import com.auth.service.domain.Service.AuthService;
 import com.auth.service.domain.entity.Usuario;
 import com.auth.service.domain.enums.Role;
