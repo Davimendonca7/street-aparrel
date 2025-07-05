@@ -1,7 +1,7 @@
 package com.auth.service.domain.entity;
 
-import com.auth.service.domain.DTOs.EnderecoReqDto;
-import com.auth.service.domain.DTOs.UserReqDto;
+import com.auth.service.domain.DTOs.endereco.EnderecoReqDto;
+import com.auth.service.domain.DTOs.user.UserReqDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

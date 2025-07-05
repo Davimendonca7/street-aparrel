@@ -1,17 +1,15 @@
-package com.auth.service.domain.DTOs;
+package com.streetaparrel.servico_usuario.servico_usuario.domain.dto.cliente;
 
-import com.auth.service.domain.enums.Role;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.dto.endereco.AddressReqDto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record UserReqDto(
+import java.util.UUID;
+
+public record ClientReqDto(
         @NotBlank
-        String role,
-        @NotBlank
-        String login,
-        @NotBlank
-        String senha,
+        String id,
         @NotBlank
         String nome,
         @NotNull
@@ -19,6 +17,6 @@ public record UserReqDto(
         @NotBlank
         String telefone,
         @Valid
-        EnderecoReqDto endereco
+        AddressReqDto endereco
 ) {
 }

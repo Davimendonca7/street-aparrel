@@ -1,8 +1,10 @@
-package com.auth.service.domain.controller;
+package com.auth.service.controller;
 
 
-import com.auth.service.domain.DTOs.UserReqDto;
-import com.auth.service.domain.DTOs.UserResDto;
+import com.auth.service.domain.DTOs.login.LoginReqDto;
+import com.auth.service.domain.DTOs.login.LoginResDto;
+import com.auth.service.domain.DTOs.user.UserReqDto;
+import com.auth.service.domain.DTOs.user.UserResDto;
 import com.auth.service.domain.Service.AuthService;
 import com.auth.service.domain.entity.Usuario;
 import jakarta.validation.Valid;
@@ -27,5 +29,10 @@ public class AuthController {
         UserResDto userRes = new UserResDto(usuario);
 
         return ResponseEntity.status(200).body(userRes);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResDto> login(@RequestBody @Valid LoginReqDto login){
+        return ResponseEntity.ok(new LoginResDto(authService.login(login)));
     }
 }

@@ -32,6 +32,8 @@ services:
     build: ./auth-service
     container_name: auth-service
     depends_on:
+      rabbitmq:
+        condition: service_started
       db_auth-service:
         condition: service_started
     env_file:
@@ -75,8 +77,6 @@ services:
       SPRING_RABBITMQ_PORT: 5672
       SPRING_RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER}
       SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS}
-      SPRINGDOC_API_DOCS_ENABLED: "true"
-      SPRINGDOC_SWAGGER_UI_ENABLED: "true"
     ports:
       - "8080"
     networks:

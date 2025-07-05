@@ -1,7 +1,7 @@
 package com.auth.service.domain.Service;
 
-import com.auth.service.domain.DTOs.EnderecoReqDto;
-import com.auth.service.domain.DTOs.UserReqDto;
+import com.auth.service.domain.DTOs.endereco.EnderecoReqDto;
+import com.auth.service.domain.DTOs.user.UserReqDto;
 import com.auth.service.domain.Service.messaging.RabbitMQProducer;
 import com.auth.service.domain.entity.Cliente;
 import com.auth.service.domain.entity.Usuario;

@@ -1,4 +1,4 @@
-package com.auth.service.domain.DTOs;
+package com.auth.service.domain.DTOs.endereco;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

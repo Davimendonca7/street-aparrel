@@ -1,13 +1,15 @@
 package com.streetaparrel.servico_usuario.servico_usuario.domain.entity;
 
-import com.streetaparrel.servico_usuario.servico_usuario.domain.dto.cliente.DadosCadastroCliente;
+import com.streetaparrel.servico_usuario.servico_usuario.domain.dto.cliente.ClientReqDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity(name = "Cliente")
 @Table(name = "cliente")
@@ -18,14 +20,13 @@ import java.time.LocalDateTime;
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(columnDefinition = "CHAR(36)")
+    private String id;
     private String nome;
     private String cpf;
     private String telefone;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
     private Endereco endereco;
 
     @Column(name = "data_criacao")
@@ -34,7 +35,8 @@ public class Cliente {
     @Column(name = "data_atualizacao")
     private LocalDateTime dataAtualizacao;
 
-    public Cliente(DadosCadastroCliente dadosCadastro) {
+    public Cliente(ClientReqDto dadosCadastro) {
+        this.id = dadosCadastro.id();
         this.nome = dadosCadastro.nome();
         this.cpf = dadosCadastro.cpf();
         this.telefone = dadosCadastro.telefone();
