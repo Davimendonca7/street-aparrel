@@ -1,14 +1,21 @@
-# Usa a imagem do OpenJDK 17
-FROM openjdk:17-jdk-slim
+FROM maven:3.8.4-amazoncorretto-17 AS build
 
-# Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
 
-# Copia o JAR gerado pelo build da aplicação
-COPY target/eureka-server-0.1.jar eureka-server.jar
+COPY pom.xml ./
 
-# Expõe a porta do Eureka Server
-EXPOSE 8761
+RUN mkdir -p /root/.m2 && mvn dependency:go-offline
 
-# Comando para rodar o Eureka Server
-ENTRYPOINT ["java", "-jar", "eureka-server.jar"]
+COPY . .
+
+RUN mvn clean package -DskipTests
+
+FROM amazoncorretto:17
+
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar /app/app.jar
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "app.jar"]

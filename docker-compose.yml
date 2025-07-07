@@ -15,58 +15,122 @@ services:
     image: streetaparrel-gateway
     build: ./gateway
     container_name: gateway
+    depends_on:
+      eureka-server:
+        condition: service_started
+    env_file:
+      - .env
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: ${SERVICEURL_EUREKA}
     ports:
       - "8080:8080"
     networks:
       - microservices-network
 
+  auth-service:
+    image: streetaparrel-auth-service
+    build: ./auth-service
+    container_name: auth-service
+    depends_on:
+      rabbitmq:
+        condition: service_started
+      db_auth-service:
+        condition: service_started
+    env_file:
+      - .env
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL_POSTGRES_DB}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_RABBITMQ_DYNAMIC: true
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER}
+      SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS}
+      SPRINGDOC_API_DOCS_ENABLED: "true"
+      SPRINGDOC_SWAGGER_UI_ENABLED: "true"
+    ports:
+      - "8080"
+    networks:
+      - microservices-network
 
+  user-service:
+    image: streetaparrel-user-service
+    build: ./user-service
+    container_name: user-service
+    depends_on:
+      db_user-service:
+        condition: service_started
+    env_file:
+      - .env
+    environment:
+#      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: ${SERVICEURL_EUREKA}
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL_MYSQL_DATABASE}
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_RABBITMQ_DYNAMIC: true
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER}
+      SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS}
+    ports:
+      - "8080"
+    networks:
+      - microservices-network
 
   rabbitmq:
-    image: rabbitmq:3-management
+    image: rabbitmq:management
     container_name: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
+    env_file:
+      - .env
     environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
     networks:
       - microservices-network
 
-  db_product-service:
-    image: mysql:8
-    container_name: db_product-service
-    environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: produto_db
-      MYSQL_USER: produto_user
-      MYSQL_PASSWORD: produto_password
-    ports:
-      - "3307:3306"  # Mapeamento da porta do MySQL para a porta 3307 no host
-    networks:
-      - microservices-network  # Rede personalizada para comunicação
+
+#  db_product-service:
+#    image: mysql:8
+#    container_name: db_product-service
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root_password
+#      MYSQL_DATABASE: produto_db
+#      MYSQL_USER: produto_user
+#      MYSQL_PASSWORD: produto_password
+#    ports:
+#      - "3307:3306"  # Mapeamento da porta do MySQL para a porta 3307 no host
+#    networks:
+#      - microservices-network  # Rede personalizada para comunicação
+
 
   db_user-service:
     image: mysql:8
     container_name: db_user-service
     environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: usuario_db
-      MYSQL_USER: usuario_user
-      MYSQL_PASSWORD: usuario_password
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "3308:3306"  # Porta exclusiva para o banco do serviço de usuário
     networks:
       - microservices-network  # Mesma rede personalizada
 
   db_auth-service:
-    image: postgres:latest
+    image: postgres:15
     container_name: db_auth-service
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: authService_password
-      POSTGRES_DB: authService_credenciais
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - 5432:5432
     networks:

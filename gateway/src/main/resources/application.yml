@@ -1,5 +1,5 @@
 server:
-  port: 8080 # Porta na qual o gateway será executado
+  port: 8080
 
 spring:
   application:
@@ -13,10 +13,28 @@ spring:
             - Path=/user/**  # Roteia para esse serviço com prefixo "/user"
           filters:
             - StripPrefix=1
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - name: User Service
+        url: /user/v3/api-docs
+      - name: Auth Service
+        url: /auth/v3/api-docs
+  api-docs:
+    path: /v3/api-docs
 
 
 eureka:
   client:
     service-url:
-       defaultZone: http://eureka-server:8761/eureka/
-#       defaultZone: http://localhost:8761/eureka/
+#       defaultZone: http://eureka-server:8761/eureka/
+       defaultZone: http://localhost:8761/eureka/
