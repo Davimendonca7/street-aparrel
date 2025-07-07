@@ -96,6 +96,17 @@ services:
     networks:
       - microservices-network
 
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    environment:
+      - SERVICES=s3,sqs,sns
+      - DEFAULT_REGION=us-east-1
+    ports:
+      - "4566:4566"  # Porta padrão do LocalStack
+    networks:
+      - microservices-network
+
 
 #  db_product-service:
 #    image: mysql:8
